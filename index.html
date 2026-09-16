@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Weg nach Deutschland 🇩🇪</title>
+<style>
+body{margin:0;background:#080c14;color:#f0f6fc;font-family:Arial,sans-serif;min-height:100vh;padding:16px 12px 70px;box-sizing:border-box}
+*{box-sizing:border-box}.container{max-width:900px;margin:auto}
+.hero{border-radius:20px;overflow:hidden;margin-bottom:18px;padding:30px 18px 22px;text-align:center;background:linear-gradient(180deg,#18263a,#080c14);border:1px solid #ffffff22;box-shadow:0 14px 40px #000a}
+.flag{display:flex;justify-content:center;gap:5px}.flag span{width:34px;height:5px;border-radius:5px}.b{background:#222}.r{background:#ff3344}.g{background:#ffcc00}
+h1{font-size:30px;margin:10px 0 3px}.hero h2{font-size:17px;color:#ffcc00;margin:0 0 8px}.hero p{color:#dbe4ef;font-size:13px}
+.user{display:inline-flex;gap:7px;align-items:center;background:#58a6ff22;border:1px solid #58a6ff55;border-radius:30px;padding:7px 14px;font-weight:bold}
+button,.open{font-family:inherit}.namebtn{background:none;border:0;color:#8b949e;text-decoration:underline;margin-top:8px}
+.tracker,.banner,.card{background:#141a26ee;border:1px solid #ffffff14;border-radius:14px;padding:14px;margin-bottom:14px}
+.labels{display:flex;justify-content:space-between;color:#8b949e;font-size:12px;margin-bottom:8px}.labels b{color:#ffcc00}
+.bar{height:8px;background:#ffffff14;border-radius:20px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#ff3344,#ffcc00);transition:.3s}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:18px 0}.tab{padding:10px 5px;border-radius:11px;background:#ffffff09;border:1px solid #ffffff14;color:#8b949e;font-weight:bold}.tab.active{color:white;border-color:#58a6ff;background:#58a6ff22}.tab.locked{opacity:.45}
+.panel{display:none}.panel.active{display:block}
+.banner{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.banner h3{margin:0;font-size:14px}.banner p{margin:4px 0 0;color:#8b949e;font-size:11px}.open{display:inline-block;background:#ff0033;color:white;text-decoration:none;padding:10px 14px;border-radius:8px;font-size:12px;font-weight:bold}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:11px}.card{margin:0}.done{background:#102a1cee;border-color:#2ea04377}.locked{opacity:.45}.top{display:flex;justify-content:space-between;border-bottom:1px solid #ffffff0d;padding-bottom:7px;font-size:12px}.day{color:#58a6ff;background:#58a6ff20;padding:3px 7px;border-radius:4px}.lek{color:#ffcc00;font-weight:bold}
+.task{background:#ffffff06;border:1px solid #ffffff0d;border-radius:8px;padding:10px;margin-top:9px}.task label{display:flex;gap:9px;align-items:flex-start;cursor:pointer}.task input{width:19px;height:19px;accent-color:#2ea043;flex:none}.desc{font-size:12px;line-height:1.5}.kb{color:#80c4ff;font-weight:bold}.ab{color:#38d39f;font-weight:bold}
+.noteBtn{background:none;border:0;color:#8b949e;font-size:11px;margin-top:8px}.note{display:none;width:100%;margin-top:7px;background:#10141d;color:white;border:1px solid #ffffff18;border-radius:6px;padding:8px;min-height:55px}
+.reset{display:block;margin:30px auto;background:none;color:#8b949e;border:1px solid #ffffff22;padding:8px 14px;border-radius:8px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,120px);opacity:0;background:#111827;border:2px solid #ffcc00;border-radius:40px;padding:13px 20px;z-index:10;transition:.35s;text-align:center;max-width:90%}.toast.show{transform:translate(-50%,0);opacity:1}
+.modal{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;padding:15px;z-index:20}.box{background:#121824;border:1px solid #ffffff22;border-radius:16px;padding:22px;width:100%;max-width:400px}.input{width:100%;padding:11px;border-radius:8px;background:#0d1117;color:white;border:1px solid #ffffff1a;margin:12px 0}.submit{width:100%;padding:11px;background:#ffcc00;border:0;border-radius:8px;font-weight:bold}
+@media(max-width:600px){h1{font-size:25px}.grid{grid-template-columns:1fr}.tabs{grid-template-columns:1fr 1fr 1fr}.banner{display:block}.open{margin-top:10px;display:block;text-align:center}}
+</style>
+</head>
+<body>
+<div id="toast" class="toast">🇩🇪 <span id="toastText"></span></div>
+<div id="modal" class="modal"><div class="box"><h3 style="color:#ffcc00">✈️ خطة السفر وإتقان الألمانية</h3><div style="font-size:12px;color:#8b949e">اكتب اسمك لتخصيص خطتك:</div><input id="nameInput" class="input" placeholder="اكتب اسمك هنا"><button class="submit" onclick="saveName()">بدء الرحلة 🚀</button></div></div>
+<div class="container">
+<div class="hero"><div class="flag"><span class="b"></span><span class="r"></span><span class="g"></span></div><h1>Weg nach Deutschland ✈️🇩🇪</h1><h2>خطة إتقان الألمانية من الصفر حتى B2</h2><p>محطات منظمة لدروس الشرح والـ Arbeitsbuch خطوة بخطوة نحو السفر والتحدث بطلاقة</p><div class="user">✈️ مسافر نحو ألمانيا: <span id="username">طالب ألماني</span></div><br><button class="namebtn" onclick="openName()">تعديل الاسم</button></div>
+<div class="tracker"><div class="labels"><span>معدل إنجاز المهام الكلية</span><span><b id="done">0</b> / <span id="total">70</span> مهمة (<span id="pct">0%</span>)</span></div><div class="bar"><div id="fill" class="fill"></div></div></div>
+<div class="tabs">
+<button id="t1" class="tab active" onclick="tab('a11',this)">🇩🇪 النصف الأول<br><small>A1.1</small></button>
+<button id="t2" class="tab locked" onclick="tab('a12',this)">🔒 النصف الثاني<br><small>A1.2</small></button>
+<button id="t3" class="tab locked" onclick="tab('gram',this)">🔒 الجراماتيك<br><small>A1</small></button>
+</div>
+<div id="a11" class="panel active"><div class="banner"><div><h3>قائمة A1.1 • مس آية أمين</h3><p>شرح Kursbuch وحل Arbeitsbuch للوحدات 1 إلى 7</p></div><a class="open" target="_blank" href="https://youtube.com/playlist?list=PL_Lje8xtkLIrDBN78pbFG5r1xFOIHXIBj">▶️ فتح قائمة A1.1</a></div><div id="g1" class="grid"></div></div>
+<div id="a12" class="panel"><div class="banner"><div><h3>قائمة A1.2 • مس آية أمين</h3><p>شرح وحل الوحدات 8 إلى 14</p></div><a class="open" target="_blank" href="https://youtube.com/playlist?list=PL_Lje8xtkLIqeaHwE43KXKy9BMPyuCa5m">▶️ فتح قائمة A1.2</a></div><div id="g2" class="grid"></div></div>
+<div id="gram" class="panel"><div class="banner"><div><h3>مكثف Grammatik A1</h3><p>قواعد + تمارين مجمعة</p></div><a class="open" target="_blank" href="https://youtube.com/playlist?list=PL_Lje8xtkLIqPgpxLvbXWesBsrq99K3X_">▶️ فتح الجراماتيك</a></div><div id="g3" class="grid"></div></div>
+<button class="reset" onclick="resetAll()">⚠️ إعادة ضبط الخطة من الصفر</button>
+</div>
+<script>
+const plan=[
+[1,'Lektion 1: Guten Tag!','فيديو 1: شرح Kursbuch (الأبجدية والتحيات الأولى)','فيديو 2: حل تدريبات كتاب الواجب Arbeitsbuch'],
+[2,'Lektion 1: Guten Tag!','فيديو 3: شرح Kursbuch (الأرقام والتعريف بالنفس)','فيديو 4: حل تمارين الاستماع والواجب بالـ AB'],
+[3,'Lektion 1 & 2','فيديو 5: ختام نصوص ومحادثات Lektion 1','فيديو 6: حل تدريبات تثبيت كلمات الوحدة الأولى'],
+[4,'Lektion 2: Familie und Freunde','فيديو 7: شرح شجرة العائلة والضمائر الشخصية','فيديو 8: حل تدريبات تصريف أفعال المحاضرة'],
+[5,'Lektion 2: Familie und Freunde','فيديو 9: شرح تصريف الأفعال وتكوين السؤال','فيديو 10: حل تمارين كتاب الواجب لـ Lektion 2'],
+[6,'Lektion 2 & 3','فيديو 11: التحدث عن اللغات والبلاد وختام الوحدة','فيديو 12: حل تدريبات المراجعة والاختبار الصغير'],
+[7,'Lektion 3: Essen und Trinken','فيديو 13: شرح الأطعمة وأدوات der, die, das','فيديو 14: حل تدريبات تصنيف الكلمات والأدوات بالـ AB'],
+[8,'Lektion 3: Essen und Trinken','فيديو 15: شرح الجمع والنفي بـ kein/keine','فيديو 16: حل تدريبات النفي والمذكر والمؤنث'],
+[9,'Lektion 3 & 4','فيديو 17: التسوق والأسعار والمحادثة اليومية','فيديو 18: حل تمارين ختام Lektion 3 بالـ AB'],
+[10,'Lektion 4: Meine Wohnung','فيديو 19: شرح أنواع السكن والغرف والأثاث','فيديو 20: حل تدريبات قطع الأثاث بالـ AB'],
+[11,'Lektion 4: Meine Wohnung','فيديو 21: شرح الصفات والألوان والنفي بـ nicht','فيديو 22: حل تمارين المقارنة ووصف الشقق'],
+[12,'Lektion 4 & 5','فيديو 23: قراءة إعلانات السكن ونهاية الوحدة','فيديو 24: حل مراجعة Lektion 4 بالكامل'],
+[13,'Lektion 5: Mein Tag','فيديو 25: شرح قراءة الساعة الرسمية وغير الرسمية','فيديو 26: حل تدريبات ضبط التوقيت بالـ AB'],
+[14,'Lektion 5 & 6','فيديو 27: شرح الأفعال المنفصلة Trennbare Verben','فيديو 28: حل تمارين الأفعال المنفصلة بالواجب'],
+[15,'Lektion 6: Freizeit','فيديو 29: شرح الهوايات وأوقات الفراغ والأيام','فيديو 30: حل تدريبات الأنشطة وتصريف können'],
+[16,'Lektion 6 & 7','فيديو 31: ختام محادثات وتمارين Lektion 6','فيديو 32: شرح بداية Lektion 7 وحل واجباتها'],
+[17,'Lektion 7: Kinder und Schule','فيديو 33: ختام وشرح Lektion 7 لإنهاء A1.1 بالكامل','حل وتصحيح بنك تمارين Lektion 7 من كتاب الواجب'],
+[18,'A1.1 Abschlusstest','مراجعة وتثبيت كلمات وقواعد A1.1','حل امتحان نصف المستوى A1.1 وتصحيح الملاحظات'],
+[19,'Lektion 8: Beruf und Arbeit','فيديو 1 (A1.2): شرح المهن وأماكن العمل','فيديو 2: حل تدريبات المذكر والمؤنث في المهن بالـ AB'],
+[20,'Lektion 8: Beruf und Arbeit','فيديو 3: شرح صيغ الماضي البسيط war و hatte','فيديو 4: حل تدريبات التحويل للماضي وتثبيت Lektion 8'],
+[21,'Lektion 9: In einer fremden Stadt','فيديو 5: شرح الأماكن وسؤال الطريق والاتجاهات','فيديو 6: حل تدريبات الخرائط والأماكن بالـ AB'],
+[22,'Lektion 9: In einer fremden Stadt','فيديو 7: شرح حالة المفعول به Akkusativ مع الأدوات','فيديو 8: حل تمارين تحويل der إلى den بالواجب'],
+[23,'Lektion 10: Gesundheit','فيديو 9: شرح أجزاء الجسم والشكوى من الألم','فيديو 10: حل تدريبات أعضاء الجسم والأمراض'],
+[24,'Lektion 10: Gesundheit','فيديو 11: شرح فعل sollen وصيغ الأوامر Imperativ','فيديو 12: حل تدريبات محادثة الطبيب والواجب'],
+[25,'Lektion 11: Unterwegs','فيديو 13: شرح وسائل المواصلات ومحطة القطار','فيديو 14: حل تدريبات حروف الجر لوسائل النقل'],
+[26,'Lektion 11: Unterwegs','فيديو 15: شرح حروف الجر المكانية وحالة Dativ','فيديو 16: حل تمارين الاتجاهات والداتيف بالـ AB'],
+[27,'Lektion 12: Kundenservice','فيديو 17: شرح الخدمات والمواعيد الهاتفية','فيديو 18: حل تدريبات قراءة إيميلات العملاء'],
+[28,'Lektion 12: Kundenservice','فيديو 19: شرح زمن الماضي التام Perfekt مع haben','فيديو 20: حل تدريبات Partizip II في كتاب الواجب'],
+[29,'Lektion 13: Neue Kleider','فيديو 21: شرح الملابس والمقاسات والألوان','فيديو 22: حل تدريبات الشراء ومفردات الملابس'],
+[30,'Lektion 13: Neue Kleider','فيديو 23: شرح الماضي التام مع sein وضمائر النصب','فيديو 24: حل تمارين أفعال الحركة في الماضي بالـ AB'],
+[31,'Lektion 14: Feste und Freunde','فيديو 25: شرح الحفلات والمناسبات وبطاقات المعايدة','فيديو 26: حل تدريبات صياغة الدعوات والإيميلات'],
+[32,'Lektion 14: Feste und Freunde','فيديو 27: شرح حروف الجر الزمنية والوداع','فيديو 28: حل تدريبات ختام Lektion 14 بالكامل'],
+[33,'A1.2 Abschluss','فيديو 29: مراجعة وتلخيص شامل لمنهج A1.2','فيديو 30: حل بنك الأسئلة والتدريبات التجميعية'],
+[34,'مكثف القواعد النحوية','فيديو قواعد 1: الأزمنة وتصريف الأفعال المنتظمة والشاذة','فيديو قواعد 2: حالات الإعراب (Nominativ & Akkusativ)'],
+[35,'مكثف القواعد النحوية','فيديو قواعد 3: حروف الجر، أدوات الاستفهام وصياغة Perfekt','حل ملزمة تمارين القواعد المجمعة وتلخيص الجداول']
+];
+let state=JSON.parse(localStorage.getItem('de_state_v1')||'{}');
+function allowed(d,s){if(d==1&&s==1)return true;if(s==2)return !!state[`d${d}1`];return !!(state[`d${d-1}1`]&&state[`d${d-1}2`])}
+function unlocked(stage){let max=stage==='a11'?0:stage==='a12'?18:33;for(let d=1;d<=max;d++)if(!state[`d${d}1`]||!state[`d${d}2`])return false;return true}
+function render(){
+ ['g1','g2','g3'].forEach(x=>document.getElementById(x).innerHTML='');
+ plan.forEach(x=>{let[d,lek,t1,t2]=x,st=d<=18?'g1':d<=33?'g2':'g3',c=document.createElement('div');let a=!!state[`d${d}1`],b=!!state[`d${d}2`];c.className='card '+(a&&b?'done ':'')+(!allowed(d,1)&&!a?'locked':'');c.innerHTML=`<div class="top"><span class="day">TAG ${String(d).padStart(2,'0')}</span><span class="lek">${lek}</span></div><div class="task"><label><input type="checkbox" ${a?'checked':''} ${!allowed(d,1)&&!a?'disabled':''} onchange="toggle(${d},1,this)"><div><div class="kb">📖 الشرح الأساسي (Kursbuch)</div><div class="desc">${t1}</div></div></label></div><div class="task"><label><input type="checkbox" ${b?'checked':''} ${!allowed(d,2)&&!b?'disabled':''} onchange="toggle(${d},2,this)"><div><div class="ab">✍️ الواجب والتدريبات (Arbeitsbuch)</div><div class="desc">${t2}</div></div></label></div><button class="noteBtn" onclick="note(${d})">📝 ملاحظات اليوم</button><textarea id="n${d}" class="note" oninput="saveNote(${d})">${state['n'+d]||''}</textarea>`;document.getElementById(st).appendChild(c)});
+let done=0;plan.forEach(x=>{if(state[`d${x[0]}1`])done++;if(state[`d${x[0]}2`])done++});document.getElementById('done').textContent=done;let p=Math.round(done/70*100);document.getElementById('pct').textContent=p+'%';document.getElementById('fill').style.width=p+'%';
+[['t2','a12'],['t3','gram']].forEach(([id,s])=>document.getElementById(id).classList.toggle('locked',!unlocked(s)));
+}
+function toggle(d,s,el){if(el.checked&&!allowed(d,s)){el.checked=false;alert(s===2?'⚠️ يجب إنهاء الشرح أولاً!':'⚠️ يجب إنهاء اليوم السابق كاملاً!');return}state[`d${d}${s}`]=el.checked;if(!el.checked){for(let i=d+1;i<=35;i++){state[`d${i}1`]=false;state[`d${i}2`]=false}}localStorage.setItem('de_state_v1',JSON.stringify(state));if(el.checked)toast(state[`d${d}1`]&&state[`d${d}2`]?'🏆 ممتاز! قفلت اليوم كامل!':'🇩🇪 Sehr gut! خلصت المهمة!');render()}
+function tab(s,b){if(!unlocked(s)){alert('🔒 هذا المستوى مقفول. أكمل المستوى السابق بالكامل أولاً.');return}document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.getElementById(s).classList.add('active');b.classList.add('active')}
+function note(d){let x=document.getElementById('n'+d);x.style.display=x.style.display==='block'?'none':'block'}
+function saveNote(d){state['n'+d]=document.getElementById('n'+d).value;localStorage.setItem('de_state_v1',JSON.stringify(state))}
+function toast(t){let x=document.getElementById('toast');document.getElementById('toastText').textContent=t;x.classList.add('show');clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.remove('show'),3000)}
+function openName(){document.getElementById('nameInput').value=localStorage.getItem('de_user_v1')||'';document.getElementById('modal').style.display='flex'}
+function saveName(){let n=document.getElementById('nameInput').value.trim();if(!n)return alert('من فضلك اكتب اسمك');localStorage.setItem('de_user_v1',n);document.getElementById('username').textContent=n;document.getElementById('modal').style.display='none';toast('أهلاً بك يا '+n+'! 🇩🇪')}
+function resetAll(){if(confirm('هل أنت متأكد من مسح التقدم؟')){state={};localStorage.setItem('de_state_v1','{}');render();toast('تمت إعادة ضبط الخطة 🔄')}}
+document.getElementById('username').textContent=localStorage.getItem('de_user_v1')||'طالب ألماني';render();
+if(!localStorage.getItem('de_user_v1'))openName();
+</script>
+</body></html>
